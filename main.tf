@@ -82,20 +82,12 @@ resource "aws_route_table" "private_route_table" {
 
 
 resource "aws_s3_bucket" "b" {
-  bucket = "my-tf-test-bucket"
 
   tags = {
     Name        = "kishor-stage2_test-bucket"
     Environment = "Dev"
   }
 }
-
-resource "aws_s3_bucket_acl" "example" {
-  bucket = aws_s3_bucket.b.id
-  acl    = "private"
-}
-
-
 ################################################################################
 
 resource "aws_route_table_association" "public_route_table_association" {
