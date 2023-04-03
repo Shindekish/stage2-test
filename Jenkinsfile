@@ -1,30 +1,37 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage("TF Init"){
-            steps{
-                echo "Executing Terraform Init"
+
+    stages {
+        stage('checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Shindekish/stage2-test.git']])
             }
         }
-        stage("TF Validate"){
-            steps{
-                echo "Validating Terraform Code"
+
+        stage('terraform init') {
+            steps {
+                sh "terraform init"
             }
         }
-        stage("TF Plan"){
-            steps{
-                echo "Executing Terraform Plan"
+
+        stage('terraform validte') {
+            steps {
+                sh "terraform validte"
             }
         }
-        stage("TF Apply"){
-            steps{
-                echo "Executing Terraform Apply"
+
+        stage('terraform format') {
+            steps {
+                sh "terraform fmt"
             }
         }
-        stage("Invoke Lambda"){
-            steps{
-                echo "Invoking your AWS Lambda"
+        stage('terraform action') {
+            steps {
+            
+
+               sh "terraform ${action} –auto-approve"
             }
         }
     }
+
 }
