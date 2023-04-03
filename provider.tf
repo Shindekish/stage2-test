@@ -8,6 +8,6 @@ terraform {
     Bucket: "3.devops.candidate.exam"
     bucket = "kishor-stage2_test-bucket"
     key    = "kishor.shinde"
-    region = "us-south-1"
+    region = "ap-south-1"
   }
 }
