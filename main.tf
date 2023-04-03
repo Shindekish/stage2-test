@@ -79,6 +79,15 @@ resource "aws_route_table" "private_route_table" {
   }
 }
 }
+
+
+resource "aws_s3_bucket" "b" {
+  bucket = "my-s3-bucket"
+  tags = {
+    Name        = "kishor-stage2_test-bucket"
+    Environment = "Dev"
+  }
+}
 ################################################################################
 
 resource "aws_route_table_association" "public_route_table_association" {
